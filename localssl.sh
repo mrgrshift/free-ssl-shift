@@ -19,7 +19,7 @@ echo
 
 LOG=logs/localssl.log
 COUNTRY=DE
-STA=Stockolm
+STA=Stockholm
 LOC=Sweden
 ORG=SHIFT
 ORU=SHIFT
