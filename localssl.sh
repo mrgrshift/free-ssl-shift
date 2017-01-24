@@ -1,7 +1,7 @@
 #!/bin/bash
 #This script will help you to generate a local ssl for your server
 #With this you can enable ssl in your config.json
-#Before you do a bash lisk.sh reload first check if your delegate is about to forge
+
 
 
 
@@ -19,35 +19,13 @@ echo
 
 LOG=logs/localssl.log
 COUNTRY=DE
-STA=Berlin
-LOC=Germany
-ORG=LISK
-ORU=LSK
+STA=Stockolm
+LOC=Sweden
+ORG=SHIFT
+ORU=SHIFT
 PASS=$(date +%s | sha256sum | base64 | head -c 32 ; echo)
 
-if [ -f "$1" ]; then
-	case $1 in
-	"main")
-		echo "You are installing this script for mainnet"
-		VERSION="lisk-main"
-	;;
-	"test")
-		echo "You are installing this script for testnet"
-		VERSION="lisk-test"
-	;;
-	*)
-                echo "You are installing this script for mainnet"
-                VERSION="lisk-main"
-        ;;
-	esac
-else
-	echo "You are installing this script for mainnet"
-	echo "If you want to change this script to testnet please stop this installation and start again with:"
-	echo "bash install.sh test"
-	VERSION="lisk-main"
-fi
-
-mkdir -p ../$VERSION/ssl/
+mkdir -p ../shift/ssl/
 
 echo "Please enter the following information:"
 echo -n "Name of your delegate: "
@@ -101,12 +79,12 @@ echo "$TIME Starting to generate ssl" > $LOG
 	fi
 
 	#FINISHING AND CLEANING
-	mv "$DELEGATE_NAME".pem ../$VERSION/ssl/
+	mv "$DELEGATE_NAME".pem ../shift/ssl/
 	rm $DELEGATE_NAME*
 
 echo
 echo "Your SSL Certificate has been created successfully."
-echo "Go to your lisk config.json file and edit ssl section like the following:"
+echo "Go to your Shift config.json file and edit ssl section like the following:"
 echo "    \"ssl\": {"
 echo -e "        \"enabled\": ${CYAN}true${OFF},"
 echo "        \"options\": {"
@@ -118,7 +96,7 @@ echo "        }"
 echo "    },"
 
 echo
-echo "After edit config.json reload lisk: bash lisk.sh reload."
+echo "After edit config.json reload Shift, stop and start your node app.js"
 echo "Now you will be able to access to your wallet in a more secure way."
 echo "Try the following (change the example IP for yours):"
 echo "http://123.123.123.123:$HTTPS_PORT/"
