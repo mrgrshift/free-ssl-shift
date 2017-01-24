@@ -26,6 +26,7 @@ ORU=SHIFT
 PASS=$(date +%s | sha256sum | base64 | head -c 32 ; echo)
 
 mkdir -p ../shift/ssl/
+mkdir -p logs/
 
 echo "Please enter the following information:"
 echo -n "Name of your delegate: "
